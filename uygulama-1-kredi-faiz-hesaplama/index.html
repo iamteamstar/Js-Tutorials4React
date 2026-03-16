@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Kredi Hesaplama Formu</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='index.js'></script>
+</head>
+<body>
+    <h3>KREDİ HESAPLAMA FORMU</h3>
+    <form action="#" id="formKredi" method="get"><!--# ilesunucu taradı yağacağı bir işlem yok diyoruz, belki başka yerde kullanırız diye id veriyoruz-->
+        <label for="txtKrediTutari"style="">Çekilecek Kredi Tutarı :</label>
+        <input type="text" name="" id="txtKrediTutari"><!-- input:text ile getiririz.gruplamaişlemi yapıacağı zaman name --><br>
+        <label for="listVade">Vade Seçeneği: </label>
+        <select name="" style="text-align: right;" id="listVade"><!-- açılır liste açmakiçin select kullanılır -->
+        <option value="12">12 ay</option>
+        <option value="24">24 ay</option>
+        <option value="36">36 ay</option>
+        <option value="48">48 ay</option>
+        </select><!--eğer buradaki seçenekler daha fazla olsaydı for ile yapardık --><br>
+        <input type="button" style="margin: 10px; text-align: justify;" value="Kredi Geri Ödeme Şartları Hesapla" onclick="KrediHesapla();">
+    </form>
+    <h4 id="sonuc"></h4><!--hesaplamadan gelen result buradaki sonuc id de gözükecek-->
+</body><!--buradaki hesabı yaptırmak için js olacak-->
+</html>
