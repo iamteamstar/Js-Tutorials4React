@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript DOM</title>
+</head>
+<body>
+    <h1>JS DOM İşlemleri</h1>
+    <h1 id="sil">JS DOM İşlemleri</h1>
+    <h1 class="myTitle">JS DOM İşlemleri</h1>
+    <p class="pClass"id="pID">Lorem ipsum dolor sit.</p>
+    <h2>Öğrenci listesi</h2>
+    <ul>
+        <li>ogrenci1</li>
+        <li>ogrenci2</li>
+        <li>ogrenci3</li>
+        <li>ogrenci4</li>
+        <li>ogrenci5</li>
+        <li>ogrenci6</li>
+    </ul>
+
+    <script>
+        const title=document.querySelector(".myTitle")//bu kısımda id yazıp (document.querySelector("#sil")) o id ye sahip etiket ve özelliklere 
+        //  etki edebilriiz. eğer bir classa etki etmek istiyorsak yine burada etki edebilirz(document.querySelector(".myTitle")) birçok h1 varsa da sadece birine ve ilk bulduğuna 
+        // etki eder çünkü querySelector sadece tek bir etikete etki etmek için kullanılır
+
+
+        console.log(title)//tarayıcıdaki console ekranına yazdırır
+
+        const title2=document.getElementById("sil")//html kuralları gereği, bir sayfada bir id ye sahip sadece tek bir şeye aittir. yani her sayfada bir tane aynı isimde id bulunur 
+
+        document.querySelector("p").style.color="blue"//queSelector ile seçim yaparken ister tag name, ister class istersek de id sine göre seçim yapabiliriz
+        document.querySelector(".pClass").style.background="yellow"
+        document.querySelector("#pID").style.height="220px"//bu ve tüm css özellikleri (color,background,height...) tarayıcıda etikete inline olarak yazılır
+
+        title.style.color="blue"// css özelliği ekleme
+        title2.style.color="red"
+
+        const title3=document.querySelector("h1")
+        title3.innerText="Merhaba JS" // İLK H1 ETİKETİNİN! (querySelector dan dolayı, eğer querySelectorAll kullansaydık bütün h1 etiketlerine etki eder.) içeriğini innerText ile değiştirebilriiz
+        
+        title3.innerHTML="<button>click</button>" //bu şekilde içerisindeki html etiketi de değiştirilebilir.seçili olan h1 etiketini, "click" adlı bir buttonla değiştirdik
+
+        document.querySelector("ul").style.color="orange"//ilk bulunan ul listesine etki eder eğer burada li çağırsaydık, ilk bulduğu li elemanına etki edecekti(bu örnekte sadece ogrenci1 e)
+        document.querySelector("li:last-Child").style.background="black"// ilk bulduğu li elemanına değil en sonuncusuna etki etsin demek
+        document.querySelector("li:nth-Child(3)").style.background="purple"//3.elemana etki etsin
+        
+
+        //title.remove();//sayfadan title seçicisine sahip etiketleri veya durumları siler (burada h1 silindi)
+    </script>
+</body>
+</html>
+<!-- js yi dom içerisinde iki şekilde kullanabiliriz.
+<script src="index.js"></script> ile çağırabiliriz hatta <script></script> içerisinde js kodları da yazabiliriz. burada yazmak çok sağlıklı
+değil fakat bilmekte fayda var
+<scrip src="index.js">
+console.log("hello");
+</script> 
+şeklinde. 
+-->
