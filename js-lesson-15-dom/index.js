@@ -5,6 +5,7 @@ kısmında js kodlarımızı yazabilir veya orada hatalrımızı, gönderiğimiz
 DOM, js yi html de kullanmamızı sağlar. js temelde stringler, objeler ve arraylerle  çalışır. DOM tam olarak html etiketlerini, js nin çalışabileceği arraylere,stringlere,objectlere
 çevir. Örneğin <header> a DOM ile ulaştık diyelim. bu tagi alır js ile çalışabileceğim object olarak kullancaksam objecte array olarak kullanacaksam arraye string olarak kullanacaksam
 stringe dönüştürür. Bu tagler, seçiciler ile seçmemiz gerekir. bu seçiciler "document" içinde yer alır.querySelectorAll, getElementById. GetElementsByName... 
-sadece tekli  
+querySelector: ilk bulduğunu alır.
+
 */
 console.log("hello")

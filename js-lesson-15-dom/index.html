@@ -19,8 +19,18 @@
         <li>ogrenci5</li>
         <li>ogrenci6</li>
     </ul>
+    <ul class="product-list">
+        <li class="list-item">product1</li>
+        <li class="list-item">product2</li>
+        <li class="list-item">product3</li>
+        <li class="list-item">product4</li>
+        <li class="list-item">product5</li>
+        <li class="list-item">product6</li>
+    </ul>
 
     <script>
+                                                      /*TEKLİ SEÇİÇİLER*/
+                                                      
         const title=document.querySelector(".myTitle")//bu kısımda id yazıp (document.querySelector("#sil")) o id ye sahip etiket ve özelliklere 
         //  etki edebilriiz. eğer bir classa etki etmek istiyorsak yine burada etki edebilirz(document.querySelector(".myTitle")) birçok h1 varsa da sadece birine ve ilk bulduğuna 
         // etki eder çünkü querySelector sadece tek bir etikete etki etmek için kullanılır
@@ -48,6 +58,29 @@
         
 
         //title.remove();//sayfadan title seçicisine sahip etiketleri veya durumları siler (burada h1 silindi)
+
+
+                                    /*ÇOKLU SEÇİÇİLER*/
+        //çoklu seçiçiler, tek bir tage veya classın veya id nin TEK BİR ELEMANINA DEĞİL hepsine etki eder. belirtilen classı barındıran bütün taglere,
+        //  h1 etiketi seçildiyse bütün h1 lere, .class1 seçildiyse bu sınıfı barındıran bütün taglere veya durumlara, #id3 seçildiyse bu id yi barındıran bütün taglere ve olaylara etki eder
+
+        const productListItem=document.getElementsByClassName("list-item")  //bu çoklu seçiçileri kullanırken style özelliklerine tekli seçicilerdeki gibi ETKİ EDEMEYİZ. 
+        // eğer etki etmek istiyorsak bir döngü açmamız gerekir(ya da form da olur aslında bence ama bilmiyorum emin değilim)
+        // veya const productListItem=document.querySSelectorAll(".list-item") şeklinde de çağırılabilir/seçilebilirdi
+       //veya  const productListItem=document.getElementsByTagName("li") şeklinde de çağırılabilir fakat bu tüm belirtilen taglere etki eder,istemediklerimize bile.
+       //buna  çözüm olarak document içinde değil, değiştirmek istediğimiz taglerin olduğu alanı daha da sınırlamamız gerekir.
+       //const productListItem=document.querySSelectorAll(".list li") //list içindeki li leri seçer
+       const list2=document.querySelector(".product-list")//ul nin classı
+
+        for(let i=0;i<=(productListItem.length)-1;i++)
+             {
+                 productListItem[i].style.color="yellow";
+             }
+            for(let x of productListItem)
+            {
+                x.style.background="purple"
+            }
+
     </script>
 </body>
 </html>
