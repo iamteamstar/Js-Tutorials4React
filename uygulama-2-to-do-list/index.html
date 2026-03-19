@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><!-- Tailwind css CDN-->
+    <title>DOM TO DO LİST UYGULAMASI</title>
+</head>
+<body>
+    <h1 class="text-5xl my-10 text-center">To Do List</h1><!-- sırasıyla text-5xl: 5 px büyütür. my-10 yazı tipi değiştirir. text-center: yazıyı ortalar-->
+    <div class="container mx-auto w-1/2"> <!-- container mx-auto: divi sayfaya ortalar, w-1/2: genişliğini 150 yapar -->
+        <form>
+            <div class="border flex"><!-- border: kenarlık ekle, flex: itemleri birbirinden ayır-->
+                <input type="text" placeholder="yeni görev ekleyin" class="w-full p-3 relative z-90" id="inputText"><!-- w-full: ekranı kaplaması sağlanır, şık görünüm. p-3: padding ekler. relative z-90: diğer form nesnelerinden ayırır  -->
+                <button type="submit" class="border-l px-6 bg-green-500 text-white" id="btnAdd">Ekle</button><!-- submit, entere basınca ekleme işlemi (daha doğrusu buton tetikleme) yapan form elemanı-->
+                <!-- border-l: border light, modern buton görünümü. px-6: sağdan soldan padding verir bg-green-500: arka plan rengi verir yeşil olarak. text:white:yazı rengini düzenler-->
+            </div>
+        </form>
+                <!--Görevlerin girileceği textbox ve ekleme butonun olacağ kısım hazır. şimdi de eklenen görevleri görmek, için gerekli html kodlarını yazalım-->
+        <div class="flex justify-end my-5">
+            <button class="p-3 bg-red-500 text-white">Temizle</button>
+        </div>
+        <ul class="border p-6 flex flex-col gap-y-4" id="ToDoList">
+            <li class="flex justify-between border px-4 py-3 flex items-center"><!-- justify-between: li elemanlarını birbirinden ayrırır sağ ve sol şeklinde-->
+                <span>To Do Name</span>
+                <button class="text-red-400">Sil</button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- benim dom kısmında yapmam gereken, kullanıcının girdiği inputa ulaşabilmek -->
+     <script>
+        const inputValue=document.getElementById("inputText")
+        const addToDo=document.getElementById("btnAdd")
+        const toDoList=document.getElementById("ToDoList")
+        let todos=[] //kullanıcının yazıdığı birden fazla görevi liste olarak tutmak için
+        let textInput="";
+
+        inputValue.addEventListener("change",function(event){
+           textInput=event.target.value
+        });//eventleri toplayan metot yani kullanıcı tarafından girilen şeyleri tutar. ne zaman tutması gerektiğini belirtiyoruz: değiştiğinde yakala
+
+        //birinci olayımız tamam. şuan anlık olarak kullanıcının textboxa yazdığı girdiyi alabiliyoruz. ikinci olayımız ise ekle butonun çalışması
+        //ben ne olsun istiyorum? tıkladığım zaman girdiği aşağıdaki ul listesine eklesin. demek ki bir tıklama ("click")eventi var
+
+        addToDo.addEventListener("click",addToDoEvent)
+        // function addToDoEvent(){
+        //     console.log("tıklama olayı")
+        // }
+        function addToDoEvent(event)
+        {
+            event.preventDefault();//sayfa yenilenmeden (bunu yazmazsak her seferinde sıfırlanıyor sayfa yenileniyor) tıklama olayını gerçekleştirir
+            //peki tıklandıığında ne yapacak? istediğim şey, tıklandığında bir array içerisine, yazılan inputları eklemesi veya direkt göndermesi
+            //bunu yapmak için öncelikle nereye ekleme yapacaksa onu seçmemiz gerek. biz ul etikleri içindeki li lere ekleme yapacağız. ul ye id verdik
+            todos.push({id:todos.length+1,todoTitle:textInput}); //arraye nesne eklemeyi push ile yapıyorduk, id yi arrayin son halinden bir fazlası haline getitrdik. text Inputu çağırarak(kullanıcının yazdığını aldığımız even [onu da addListener("change") ksımnda seçmiştik])
+            document.getElementById("inputText").value="" //kullanıcı ekleme işlemi yaptığında textboxta ekledği son şey kalıyordu ve kullanıcı yeni bir şey eklemek istediğinde önce textboxu temizlemesi gerekiyordu
+            displayToDo();
+        }
+
+        //şimdi şu ana kadar kullanıcının girdisini alabiliyoruz, bunu bir arrayda tutuyoruz. bu işlemleri console log kısmında görebiliyoruz. şimdi sıra bunu ui da açtığımız ul listte görmekte
+
+        function displayToDo()
+        {
+            let result="";
+            todos.forEach((item)=>{
+                result += `
+                <li class="flex justify-between border px-4 py-3 flex items-center">
+                <span>${item.todoTitle}</span>
+                <button class="text-red-400">Sil</button>
+            </li>
+                `
+            });
+            toDoList.innerHTML=result;
+            
+        }
+    </script>
+</body>
+</html>
