@@ -18,13 +18,13 @@
         </form>
                 <!--Görevlerin girileceği textbox ve ekleme butonun olacağ kısım hazır. şimdi de eklenen görevleri görmek, için gerekli html kodlarını yazalım-->
         <div class="flex justify-end my-5">
-            <button class="p-3 bg-red-500 text-white">Temizle</button>
+            <button class="p-3 bg-red-500 text-white" id="btnSil">Temizle</button>
         </div>
         <ul class="border p-6 flex flex-col gap-y-4" id="ToDoList">
-            <li class="flex justify-between border px-4 py-3 flex items-center"><!-- justify-between: li elemanlarını birbirinden ayrırır sağ ve sol şeklinde-->
+            <!-- <li class="flex justify-between border px-4 py-3 flex items-center">justify-between: li elemanlarını birbirinden ayrırır sağ ve sol şeklinde 
                 <span>To Do Name</span>
                 <button class="text-red-400">Sil</button>
-            </li>
+            </li> -->
         </ul>
     </div>
 
@@ -52,8 +52,8 @@
             event.preventDefault();//sayfa yenilenmeden (bunu yazmazsak her seferinde sıfırlanıyor sayfa yenileniyor) tıklama olayını gerçekleştirir
             //peki tıklandıığında ne yapacak? istediğim şey, tıklandığında bir array içerisine, yazılan inputları eklemesi veya direkt göndermesi
             //bunu yapmak için öncelikle nereye ekleme yapacaksa onu seçmemiz gerek. biz ul etikleri içindeki li lere ekleme yapacağız. ul ye id verdik
-            todos.push({id:todos.length+1,todoTitle:textInput}); //arraye nesne eklemeyi push ile yapıyorduk, id yi arrayin son halinden bir fazlası haline getitrdik. text Inputu çağırarak(kullanıcının yazdığını aldığımız even [onu da addListener("change") ksımnda seçmiştik])
-            document.getElementById("inputText").value="" //kullanıcı ekleme işlemi yaptığında textboxta ekledği son şey kalıyordu ve kullanıcı yeni bir şey eklemek istediğinde önce textboxu temizlemesi gerekiyordu
+            todos.unshift({id:todos.length+1,todoTitle:textInput}); //arraye nesne eklemeyi push ile yapıyorduk, id yi arrayin son halinden bir fazlası haline getitrdik. text Inputu çağırarak(kullanıcının yazdığını aldığımız even [onu da addListener("change") ksımnda seçmiştik]) push en sona ekliyodu listeişn basinda gözüksün diye unshift seçiyoruz
+            document.getElementById("inputText").value=""; //kullanıcı ekleme işlemi yaptığında textboxta ekledği son şey kalıyordu ve kullanıcı yeni bir şey eklemek istediğinde önce textboxu temizlemesi gerekiyordu
             displayToDo();
         }
 
@@ -62,17 +62,35 @@
         function displayToDo()
         {
             let result="";
+            if(todos.length===0){
+                toDoList.innerHTML="Liste Boş!" //bu çalışmadı sonra bak
+            }
+            else{
             todos.forEach((item)=>{
                 result += `
                 <li class="flex justify-between border px-4 py-3 flex items-center">
                 <span>${item.todoTitle}</span>
-                <button class="text-red-400">Sil</button>
+                <button class="text-red-400" onclick="deleteToDo(${item.id})">Sil</button>
             </li>
                 `
             });
             toDoList.innerHTML=result;
-            
         }
+        }
+        function deleteToDo(id)
+        {
+            let deleteId;
+            for(let i in todos)
+        {
+            if(todos[i].id==id)
+            deleteId=i
+        }
+        todos.splice(deleteId,1)//burada 2 yazarsak id den sonr akaç tane silmesi istendiğini yazar
+    displayToDo()    
+    }
+
+        displayToDo()
+        
     </script>
 </body>
 </html>

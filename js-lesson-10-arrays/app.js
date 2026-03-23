@@ -38,7 +38,7 @@ console.log(result)
 console.log(products)
 
 let pcProduct=["asus","huawei","monster","acer","hp","teknopc","casper","sony"]
-result=products.concat(pcProduct)//iki diziyi birleştirmeyi sağlar. 3 dizi birleştirecek olsaydım: const myChildren = arr1.concat(arr2, arr3);
+result=products.concat(pcProduct)//iki diziyi birleştirmeyi sağlar. 3 dazi birleştirecek olsaydım: const myChildren = arr1.concat(arr2, arr3);
 console.log(result)
 
 console.log(products+pcProduct)//düz liste oalrak yan yana yazar : mercedes,iphone,samgun3,NOKIA,redmi..

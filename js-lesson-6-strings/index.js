@@ -1,7 +1,7 @@
 const ad="Azad";
 const soyad="Koçak";
 const yas =22;
-const sehir="İstanbul";
+const sehir="Bursa";
 const meslek="Backend Developer";
 
 const bio="Benim adım "+ad+" soyadım "+soyad+". "+sehir+"'da yaşıyorum. "+yas+" yaşındayım"
@@ -11,3 +11,4 @@ console.log(bio);
 
 const newBio=`Benim adım ${ad} soyadım ${soyad}. ${sehir}'da yasiyorum. ${yas} yaşındayım`
 console.log(newBio);
+//let değiştirilibelir, const değişken atanıp değiştirilemez 

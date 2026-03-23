@@ -23,4 +23,5 @@ console.log(result)
 
 //değişkenleri birleştirme
 result=youtube.toLowerCase().replaceAll(".","-").replace("com","com/")
+result=youtube.replace
 console.log(result)
