@@ -1,0 +1,100 @@
+<!--
+Yeni Proje Görevi: Bütçe Takip Uygulaması
+Uygulamanın Özellikleri (Gereksinimler):
+
+İki Adet Input:
+
+Birinci input: İşlem adı (Örn: "Market Alışverişi", "Maaş", "Fatura").
+
+İkinci input: Tutar (Örn: 500, 15000).
+İşlem Tipi Seçimi:
+Gelir mi, Gider mi olduğunu seçmek için iki tane Radio Button veya bir Select (Açılır Menü) kutusu.
+
+Ekle Butonu:
+Tıklandığında girilen veriyi tıpkı To-Do listesindeki gibi bir diziye (array) obje olarak ekleyecek.
+
+Listeleme Alanı:
+Eklenen her işlem alt alta listelenecek. Eğer "Gelir" ise tutar yeşil renkte, "Gider" ise kırmızı renkte yazılabilir (Tailwind ile text-green-500 vs. kullanarak).
+Her satırın yanında yine bir "Sil" butonu olacak.
+Toplam Bakiye Gösterimi (İşte Yeni Zorluk Burası):
+Sayfanın en üstünde veya listesinin üstünde kocaman bir "Toplam Bakiye: 0 TL" yazısı olacak.
+Diziye her yeni işlem eklendiğinde veya silindiğinde bu bakiye yeniden hesaplanıp ekrana yazdırılacak. (Gelirler toplanacak, giderler çıkarılacak).
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Butce Takip</title>
+</head>
+<body>
+    <h1>Butce Takip</h1> <br><br>
+    <div >
+    <form class="justify">
+        <input type="text" placeholder="işlem adı" id="islemInputText" class="border-2 p-3 relative z-90"> 
+        <input type="text" placeholder="miktar ekleyin" id="miktarInputText" class="border-2 p-3 relative z-60"> 
+
+    <label for="">Tür</label>
+        <select name="" id="listTur">
+        <option value="turGelir">Gelir</option>
+        <option value="turGider">Gider</option>
+        </select>
+        <button class="border-l px-6 bg-green-500 text-white" id="btnAdd">Ekle</button>
+    </form>
+    </div>
+       <div class="flex justify-end my-5">
+            <button class="p-3 bg-red-500 text-white" id="btnClear" onclick="clearToDo()">Temizle</button>
+        </div>
+        <ul class="border p-6 flex flex-col gap-y-4" id="ToDoList">
+            <li class="flex justify-between border px-4 py-3 flex items-center">
+                <span>To Do Name</span>
+                <button class="text-red-400">Sil</button>
+            </li> 
+        </ul>
+    </div>
+
+
+    <script>
+        let list = [];
+const islemInput = document.getElementById("islemInputText");
+const miktarInput = document.getElementById("miktarInputText");
+const turSelect = document.getElementById("listTur"); // Select kutusunu da seçtik
+const btnAdd = document.getElementById("btnAdd");
+
+btnAdd.addEventListener("click", function(event) {
+    // 1. Formun sayfayı yenilemesini engelle
+    event.preventDefault();
+
+    // 2. Butona tıklandığı anda inputların içindeki değerleri al
+    const islemAdi = islemInput.value;
+    const miktar = Number(miktarInput.value); // Metni matematiksel bir sayıya çeviriyoruz
+    const tur = turSelect.value;
+
+    // 3. Basit bir boşluk kontrolü (Kullanıcı boş eklemeye çalışmasın)
+    if (islemAdi.trim() === "" || miktar === 0 || isNaN(miktar)) {
+        alert("Lütfen geçerli bir işlem adı ve miktar giriniz.");
+        return;
+    }
+
+    // 4. Yeni veriyi obje olarak listeye ekle
+    list.unshift({
+        id: list.length + 1,
+        isim: islemAdi,
+        tutar: miktar,
+        islemTuru: tur // "turGelir" veya "turGider" olarak gelecek
+    });
+
+    // 5. Inputların içini temizle (Kullanıcı yeni işlem girebilsin)
+    islemInput.value = "";
+    miktarInput.value = "";
+    
+    // İşlemin başarılı olduğunu konsolda gör:
+    console.log("Güncel Liste:", list);
+
+    // Bir sonraki adımda buraya displayList() fonksiyonunu çağıracağız
+});
+    </script>
+</body>
+</html>
