@@ -30,7 +30,8 @@ Diziye her yeni işlem eklendiğinde veya silindiğinde bu bakiye yeniden hesapl
     <title>Butce Takip</title>
 </head>
 <body>
-    <h1>Butce Takip</h1> <br><br>
+    <h1>Butce Takip</h1> <br>
+    <h2 class="text-3xl text-center font-bold mb-8" id="bakiyeGostergesi">Toplam Bakiye: 0 TL</h2><br>
     <div >
     <form class="justify">
         <input type="text" placeholder="işlem adı" id="islemInputText" class="border-2 p-3 relative z-90"> 
@@ -93,8 +94,58 @@ btnAdd.addEventListener("click", function(event) {
     // İşlemin başarılı olduğunu konsolda gör:
     console.log("Güncel Liste:", list);
 
-    // Bir sonraki adımda buraya displayList() fonksiyonunu çağıracağız
-});
+    displayList()
+})
+// Sayfanın başındaki değişkenlerine bunları da ekle (veya varsa kontrol et)
+const listDOM = document.getElementById("ToDoList"); // Senin HTML'indeki ul'nin id'si
+const bakiyeGostergesi = document.getElementById("bakiyeGostergesi");
+
+function displayList() {
+    let result = "";
+    let toplamBakiye = 0; // Bakiyeyi sıfırdan başlatıyoruz
+
+    if (list.length === 0) {
+        // Liste boşsa varsayılan görünüm
+        result = "<li class='text-center text-gray-500 py-4'>Henüz işlem eklenmedi.</li>";
+        bakiyeGostergesi.innerText = "Toplam Bakiye: 0 TL";
+        bakiyeGostergesi.className = "text-3xl text-center font-bold mb-8 text-gray-700"; // Rengi nötr yap
+    } else {
+        // Liste doluysa döngüyle dönüyoruz
+        list.forEach((item) => {
+            // Gelir mi Gider mi? Buna göre renk ve matematiksel işlem belirliyoruz
+            let renkClass = item.islemTuru === "turGelir" ? "text-green-500" : "text-red-500";
+            let isaret = item.islemTuru === "turGelir" ? "+" : "-";
+
+            // Bakiye hesaplama kısmı
+            if (item.islemTuru === "turGelir") {
+                toplamBakiye += item.tutar;
+            } else {
+                toplamBakiye -= item.tutar; // Giderse toplamdan çıkar
+            }
+
+            // Arayüze eklenecek HTML kalıbı (Renk değişkenini burada kullanıyoruz)
+            result += `
+            <li class="flex justify-between border px-4 py-3 items-center">
+                <span class="font-semibold">${item.isim}</span>
+                <div>
+                    <span class="${renkClass} font-bold mr-4">${isaret}${item.tutar} TL</span>
+                    <button class="text-red-400 hover:text-red-600 transition" onclick="deleteItem(${item.id})">Sil</button>
+                </div>
+            </li>
+            `;
+        });
+
+        // Bakiyenin rengini belirleme (Eksiye düştüysek kırmızı, artıdaysak yeşil olsun)
+        let bakiyeRenk = toplamBakiye >= 0 ? "text-green-600" : "text-red-600";
+        bakiyeGostergesi.innerHTML = `Toplam Bakiye: <span class="${bakiyeRenk}">${toplamBakiye} TL</span>`;
+    }
+
+    // Oluşturduğumuz HTML'i ul etiketinin içine basıyoruz
+    listDOM.innerHTML = result;
+}
+
+// Sayfa ilk yüklendiğinde listeyi ve sıfır bakiyeyi göstermesi için fonksiyonu çağır
+displayList();
     </script>
 </body>
 </html>
