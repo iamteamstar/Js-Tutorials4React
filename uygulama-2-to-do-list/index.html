@@ -18,7 +18,7 @@
         </form>
                 <!--Görevlerin girileceği textbox ve ekleme butonun olacağ kısım hazır. şimdi de eklenen görevleri görmek, için gerekli html kodlarını yazalım-->
         <div class="flex justify-end my-5">
-            <button class="p-3 bg-red-500 text-white" id="btnSil">Temizle</button>
+            <button class="p-3 bg-red-500 text-white" id="btnClear" onclick="clearToDo()">Temizle</button>
         </div>
         <ul class="border p-6 flex flex-col gap-y-4" id="ToDoList">
             <!-- <li class="flex justify-between border px-4 py-3 flex items-center">justify-between: li elemanlarını birbirinden ayrırır sağ ve sol şeklinde 
@@ -88,6 +88,11 @@
         todos.splice(deleteId,1)//burada 2 yazarsak id den sonr akaç tane silmesi istendiğini yazar
     displayToDo()    
     }
+    function clearToDo(){
+todos.splice(0,todos.length)
+displayToDo()
+
+                    }
 
         displayToDo()
         
