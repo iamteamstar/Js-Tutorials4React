@@ -58,7 +58,7 @@ Diziye her yeni işlem eklendiğinde veya silindiğinde bu bakiye yeniden hesapl
 
 
     <script>
-        let list = [];
+let list = JSON.parse(localStorage.getItem("butceListesi")) || [];
 const islemInput = document.getElementById("islemInputText");
 const miktarInput = document.getElementById("miktarInputText");
 const turSelect = document.getElementById("listTur"); // Select kutusunu da seçtik
@@ -101,6 +101,7 @@ const listDOM = document.getElementById("ToDoList"); // Senin HTML'indeki ul'nin
 const bakiyeGostergesi = document.getElementById("bakiyeGostergesi");
 
 function displayList() {
+    localStorage.setItem("butceListesi", JSON.stringify(list));
     let result = "";
     let toplamBakiye = 0; // Bakiyeyi sıfırdan başlatıyoruz
 
