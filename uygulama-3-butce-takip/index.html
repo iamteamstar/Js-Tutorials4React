@@ -46,7 +46,7 @@ Diziye her yeni işlem eklendiğinde veya silindiğinde bu bakiye yeniden hesapl
     </form>
     </div>
        <div class="flex justify-end my-5">
-            <button class="p-3 bg-red-500 text-white" id="btnClear" onclick="clearToDo()">Temizle</button>
+            <button class="p-3 bg-red-500 text-white" id="btnClear" onclick="clearItems()">Temizle</button>
         </div>
         <ul class="border p-6 flex flex-col gap-y-4" id="ToDoList">
             <li class="flex justify-between border px-4 py-3 flex items-center">
@@ -156,6 +156,11 @@ function deleteItem(id) {
     list.splice(deleteIndex, 1);
     displayList();
 }
+ function clearItems(){
+list.splice(0,list.length)
+displayList()
+
+                    }
 // Sayfa ilk yüklendiğinde listeyi ve sıfır bakiyeyi göstermesi için fonksiyonu çağır
 displayList();
     </script>
