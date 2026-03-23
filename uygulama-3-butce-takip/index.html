@@ -143,7 +143,19 @@ function displayList() {
     // Oluşturduğumuz HTML'i ul etiketinin içine basıyoruz
     listDOM.innerHTML = result;
 }
-
+function deleteItem(id) {
+    let deleteIndex; // Kafamız karışmasın diye adını deleteIndex yaptık
+    
+    // for...in dizilerde pek önerilmez, normal for kullanmak daha güvenlidir
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].id == id) {
+            deleteIndex = i; // id'yi değil, i'yi (yani sıra numarasını) alıyoruz!
+        }
+    }
+    
+    list.splice(deleteIndex, 1);
+    displayList();
+}
 // Sayfa ilk yüklendiğinde listeyi ve sıfır bakiyeyi göstermesi için fonksiyonu çağır
 displayList();
     </script>
