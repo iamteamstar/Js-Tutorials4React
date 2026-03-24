@@ -94,7 +94,7 @@ let araba4=new Araba("mavi","juke")
 console.log(araba4)
 */
 
-// encapsulation :belli bir özelliği sadece belirli yerlerde(classlarda) kullanılmasına izin vermek için kullanılır. özelliğin önüne belli olması adına # konulur
+/* encapsulation :belli bir özelliği sadece belirli yerlerde(classlarda) kullanılmasına izin vermek için kullanılır. özelliğin önüne belli olması adına # konulur
 
 class Araba{
     #renk;
@@ -117,3 +117,6 @@ console.log(araba.getRenk())//bu şekilde okuyabiliriz. değiştirmek içinse se
 
 araba.setRenk("masmavi")
 console.log(araba.getRenk())
+*/
+
+// polymorphism : aynı isimde farklı işlevleri olan metot kullanabilme  git 
