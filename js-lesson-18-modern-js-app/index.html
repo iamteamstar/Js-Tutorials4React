@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><!-- Tailwind css CDN-->
+    <title>DOM TO DO LİST UYGULAMASI</title>
+</head>
+<body class="bg-black">
+    <h1 class="text-5xl my-10 text-center text-white">To Do List</h1><!-- sırasıyla text-5xl: 5 px büyütür. my-10 yazı tipi değiştirir. text-center: yazıyı ortalar-->
+    <div class="container mx-auto w-1/2"> <!-- container mx-auto: divi sayfaya ortalar, w-1/2: genişliğini 150 yapar -->
+        <form>
+            <div class="border flex"><!-- border: kenarlık ekle, flex: itemleri birbirinden ayır-->
+                <input type="text" placeholder="yeni görev ekleyin" class="w-full p-3 relative z-90 bg-white" id="inputText"><!-- w-full: ekranı kaplaması sağlanır, şık görünüm. p-3: padding ekler. relative z-90: diğer form nesnelerinden ayırır  -->
+                <button type="submit" class="border-l px-6 bg-green-500 text-white" id="btnAdd">Ekle</button><!-- submit, entere basınca ekleme işlemi (daha doğrusu buton tetikleme) yapan form elemanı-->
+                <!-- border-l: border light, modern buton görünümü. px-6: sağdan soldan padding verir bg-green-500: arka plan rengi verir yeşil olarak. text:white:yazı rengini düzenler-->
+            </div>
+        </form>
+                <!--Görevlerin girileceği textbox ve ekleme butonun olacağ kısım hazır. şimdi de eklenen görevleri görmek, için gerekli html kodlarını yazalım-->
+        <div class="flex justify-end my-5">
+            <button class="p-3 bg-red-500 text-white" id="btnClear">Temizle</button>
+        </div>
+        <ul class="border p-6 flex flex-col gap-y-4 bg-white" id="ToDoList">
+            <!-- <li class="flex justify-between border px-4 py-3 flex items-center">justify-between: li elemanlarını birbirinden ayrırır sağ ve sol şeklinde 
+                <span>To Do Name</span>
+                <button class="text-red-400">Sil</button>
+            </li> -->
+        </ul>
+    </div>
+
+    <!-- benim dom kısmında yapmam gereken, kullanıcının girdiği inputa ulaşabilmek -->
+     <script src="main.js">
+        
+    </script>
+</body>
+</html>
